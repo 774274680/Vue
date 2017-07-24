@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<!-- 自定义过滤器，被用作一些常见的文本格式化。管道标志 "|" -->
+	<!-- 过滤器是一个通过输入数据，能够及时对数据进行处理并返回一个数据结果的简单函数 -->
+	<div id="app">
+		<p>{{message}}</p>
+		<p>{{message | sumnum}}</p>
+	</div>
+	<script type="text/javascript">
+	// filter是vue.js提供的Vue.filter()全局过滤器的构造器
+	// 一定要放在vue.js实例化之前
+	Vue.filter("sumnum",function(value){
+		return value+3;
+	});
+  	var app1 = new Vue({
+	    el: "#app",
+	    data: {
+	      message:10
+	    }
+  	});
+	</script>
+</body>
+</html>

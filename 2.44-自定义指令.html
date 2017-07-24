@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<div id="app">
+	<!-- 打开页面后鼠标焦点自动移到该标签上面 -->
+		<input v-focus>
+	</div>
+	<script type="text/javascript">
+		// 注册一个全局自定义指令
+		Vue.directive('focus', {  
+		// 当绑定元素插入到 DOM 中。  
+			inserted: function (el) {    
+			// 聚焦元素    
+				el.focus()  
+			}
+		})
+		var vm=new Vue({  
+			el: '#app'
+		})
+	</script>
+</body>
+</html>

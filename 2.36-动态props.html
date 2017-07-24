@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<div id="app">  
+		<input v-model="parentMsg">  
+		<br>  
+		<!-- 缩写形式:<child :my-message="parentMsg"></child> -->
+		<!-- 子组件的名字为Child,parentMsg指的是父组件data定义的数据,父组件模板就是实例中el属性值的区域起着父组件的作用-->
+		<Child v-bind:message="parentMsg"></Child>
+	</div>
+	<script type="text/javascript">
+		var child = {
+			// 从child标签中获得
+			props:["message"],
+			template: '<div>Message from parent:{{message}}</div>'
+		}
+
+
+		var vm=new Vue({
+			// #app元素所包含的范围指的是父组件的模板  
+			el: '#app',
+			data:{
+				parentMsg:"Vue"
+			},  
+			components: {
+			    //子组件的名字为Child 
+				'Child': child
+			}
+		})
+	</script>
+</body>
+</html>

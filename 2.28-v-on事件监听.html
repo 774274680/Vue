@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<div id="app"> 
+		<h3>v-on指令监听了DOM中按钮元素的点击事件,改变变量count的值。当然这里是在事件上写javascript代码</h3>
+		<button v-on:click="counter += 1">增加 1</button>  
+		<p>这个按钮被点击了 {{ counter }} 次。</p>
+		<hr>
+
+		<button v-on:click="greet">Greet</button>
+
+		<hr>
+		<h3>内联处理器方法</h3>
+		 <button v-on:click="say('hi')">Say hi</button>  
+		 <button v-on:click="say('what')">Say what</button>
+	
+		<h3>内联语句处理器中访问原生 DOM 事件。可以用特殊变量 $event 把它传入方法</h3>
+		 <button v-on:click="warn('就算你提交了我,我也是不会跳转的', $event)">Submit</button>
+ 		<hr>
+ 		<h3>事件修饰符</h3>
+ 		<!-- 阻止单击事件冒泡 -->
+ 		<input type="button" v-on:click.stop="onClick" value="点我试试">
+ 		<hr>
+ 		<h3>按键修饰符</h3>
+ 		<input v-on:keyup.enter="speak" placeholder="按回车有惊喜">
+	</div>
+	<script type="text/javascript">
+		var vm=new Vue({  
+			el: '#app',  
+			data: {    
+				counter: 0,
+				name:"Vue.js"  
+			},
+			methods:{
+				//event指鼠标发生的事件
+				greet: function (event) {      
+					//"this"在方法里指当前 Vue 实例      
+					alert('Hello ' + this.name + '!')      
+					//"event"是原生 DOM 事件
+					console.log(event);
+					// alert(event)     //[object MouseEvent]
+					// alert(event.target.tagName) //[BUTTON]
+					// alert(event.target.innerText); //Greet
+				},
+				say:function(message){
+					alert(message);
+				},
+				warn: function (message, event) {    // 现在我们可以访问原生事件对象    
+				// preventDefault方法是取消事件的默认动作。
+					if (event) 
+						event.preventDefault()    
+						alert(message)  
+				},
+				onClick:function(){
+					alert("阻止单击事件冒泡");
+				},
+				speak:function(){
+					alert("Vue.js很容易的,加油,你是最棒的!")
+				}
+			}
+		})
+		// 也可以用 JavaScript直接调用方法
+		// vm.greet() // -> 'Hello Vue.js!'
+	</script>
+</body>
+</html>

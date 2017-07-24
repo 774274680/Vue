@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<div id="app"> 
+		<h2>v-model 指令在表单控件元素上创建双向数据绑定。它会根据控件类型自动选取正确的方法来更新元素。</h2>
+		<hr>
+		<h3>v-model 并不关心表单控件初始化所生成的值。因为它会选择 Vue 实例数据来作为具体的值。</h3>
+		<input v-model="message" placeholder="edit me" value="haha">
+		<p>Message is: {{ message }}</p>
+		<hr>
+		<span>多行文本</span>
+		<p style="white-space: pre">{{ message }}</p><br>
+		<!-- 这里设置了v-model指令对数据messsage进行绑定。一旦该值发生改变,所有应用该值的都会发生联动 -->
+		<textarea v-model="message" placeholder="add multiple lines"></textarea>
+		<hr>
+		<h3>v-model绑定表单元素所属类型的默认值</h3>
+		<input type="checkbox" id="checkbox" v-model="checked">
+		<!-- label标签中的for指向id所在的标签,即当用户选择该标签时，浏览器就会自动将焦点转到和标签相关的表单控件上 -->
+		<label for="checkbox">{{ checked }}</label>
+		<hr>
+		<h3>多个勾选框，绑定到同一个数组</h3>
+		<input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+		<label for="jack">Jack</label>
+		<input type="checkbox" id="john" value="John" v-model="checkedNames">
+		<label for="john">John</label>
+		<input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+		<label for="mike">Mike</label>
+		<br>
+		<span>Checked names: {{ checkedNames }}</span>
+		<hr>
+		<h3>单选按钮</h3>
+		<input type="radio" id="one" value="One" v-model="picked">
+		<label for="one">One</label>
+		<br>
+		<input type="radio" id="two" value="Two" v-model="picked">
+		<label for="two">Two</label>
+		<br>
+		<span>Picked: {{ picked }}</span>
+		<hr>
+		<h3>选择列表</h3>
+		<select v-model="selected">  
+			<option>A</option>  
+			<option>B</option>  
+			<option>C</option>
+		</select>
+		<span>Selected: {{ selected }}</span>
+		<hr>
+		<h3>多选列表(绑定到一个数组)</h3>
+		<select v-model="option_selected" multiple>  
+			<option>A</option>  
+			<option>B</option>  
+			<option>C</option>
+		</select>
+		<br>
+		<span>多项选择: {{ option_selected }},可按ctrl+鼠标左键进行重新多项选择</span>
+		<hr>
+		<h3>动态选项</h3>
+		<!-- 属性for_selected的值为哪个value则显示谁 -->
+		<select v-model="for_selected">  
+			<option v-for="option in options" v-bind:value="option.value">    {{ option.text }} </option>
+		</select>
+		<span>动态选项: {{ for_selected }}</span>
+		<hr>
+		<!-- picked_choose的值为value中的哪个,则选中谁 -->
+		<input type="radio" v-model="picked_choose" value="a">单选项a
+		<input type="radio" v-model="picked_choose" value="b">单选项b
+		<br>	
+		<span>picked_choose的值为{{picked_choose}}</span>
+		<input type="checkbox" v-model="toggle" value="A">A
+		<input type="checkbox" v-model="toggle" value="B">B
+		<input type="checkbox" v-model="toggle" value="C">C
+		<input type="checkbox" v-model="toggle" value="D">D
+		<br>
+		<span>toggle的值为{{toggle}}</span>
+		<br>
+		<hr>
+		<h3>绑定 value</h3>
+		<!-- 从数组中获取的n要被标签括起来才能使用。单闭合是会报错的 -->
+		<p v-for="n in toggle">{{n}}</p>
+		<hr>
+		<h3>复选框</h3>
+		<!-- 当选中该多选框时 vm.toggle会为true,与其绑定的true-value属性值则为a。该属性是Vue定好的。 -->
+		<input  
+			type="checkbox"  
+			v-model="toggle2"  
+			v-bind:true-value="a"  
+			v-bind:false-value="b"
+		>
+		<br>
+		<span>toggle2的值为{{toggle2}}</span>
+		<hr>
+		<h3>单选按钮</h3>
+		<!--当选中时vm.pick = vm.a  也就是说点击选中其中一个单选按钮时则vm.pick的值会等于该标签v-bind绑定属性value的值 -->
+		<input type="radio" v-model="pick" v-bind:value="a">a
+		<input type="radio" v-model="pick" v-bind:value="b">b
+		<br>
+		<span>pick的值为{{pick}}</span>
+		<hr>
+		<h3>选择列表设置</h3>
+		<!-- 注意绑定的属性不能加- 如 selected-option是错误的 -->
+		<!-- v-model绑定的属性selected_option在此例子中一开始可以给一个初始值(一般为option选项的第一项):{number:123},或者给一个null值。每当点击选项时其绑定(v-bind)的属性value会传到父级中的v-model进行双向绑定达到联动 -->
+		<select v-model="selected_option">      
+			<option v-bind:value="{ number: 123 }">123</option>
+			<option v-bind:value="{ number: 345 }">345</option>
+			<option v-bind:value="{ number: 678 }">678</option>
+		</select>
+		<span>selected_option的值为{{selected_option}}</span>
+
+	</div>
+	<script type="text/javascript">
+		var vm=new Vue({  
+			el: '#app',  
+			data: {  
+				message: 'Hello world',
+				checked:true,
+				checkedNames: [],
+				picked:false,
+				selected:"B",
+				option_selected:["A","C"],
+				options:[
+					{'text':"javascript",'value':'js'},
+					{'text':"Vue.js",'value':'Vs'},
+					{'text':"Node.js",'value':"Ns"}
+				],
+				for_selected:"js",
+				picked_choose:"a",
+				toggle:["A","B","D"],
+				// 不想先选中所以这里给个空值,不然会报错
+				toggle2:null,
+				a:"a",
+				b:"b",
+				pick:null,
+				selected_option:null
+			} 
+		})
+	</script>
+</body>
+</html>

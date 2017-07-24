@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<!--“Mustache” 语法（双大括号）-->
+	<!--数据绑定,绑定了插入的文本内容-->
+	<div id="app"> {{ message }} </div>
+	<script type="text/javascript">
+		new Vue({  
+			// 绑定了id为app的元素
+			el: '#app',  
+			data: {  
+				message: 'Hello world'  
+			} 
+		})
+	</script>
+</body>
+</html>

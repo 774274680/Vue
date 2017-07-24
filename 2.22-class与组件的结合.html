@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<div id="app"> 
+		<!-- 下面会形成这样<p class="foo bar baz boo">Hi</p> -->
+		<my-component class="baz boo"></my-component>
+
+		<!--下面当isAcitive为true时 <div class="foo bar active"></div> -->
+		<my-component v-bind:class="{ active: isActive }"></my-component>
+	</div>
+	<script type="text/javascript">
+		Vue.component('my-component', {  
+			template: '<p class="foo bar">Hi</p>'
+		})
+		var vm=new Vue({  
+			el: '#app',  
+			data: {  
+				isActive:true
+			} 
+		})
+	</script>
+</body>
+</html>

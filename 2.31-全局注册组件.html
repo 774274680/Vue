@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<!-- 父实例模板使用定义的组件 my-component -->
+	<div id="app"> 
+		<h3>要确保在初始化根实例 之前 注册了组件</h3>
+		<my-component></my-component>
+	</div>
+	<script type="text/javascript">
+		// 全局注册组件   定义组件名  替换组件名的自定义组件
+		Vue.component('my-component', {
+			//template 中文意思为模板 
+			template: '<div>A custom component!</div>'
+		})
+		// 创建根实例
+		var vm=new Vue({  
+			el: '#app'
+		})
+	</script>
+</body>
+</html>

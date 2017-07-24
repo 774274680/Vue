@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<p>在模板上添加"{{ message.split('').reverse().join('') }}"显得过于复杂</p>
+		<hr>
+		<p>Original message: "{{ message }}"</p>  
+		<p>Computed reversed message: "{{ reversedMessage }}"</p>
+	</div>
+	<script type="text/javascript">
+		var vm=new Vue({  
+			el: '#app',  
+			data: {    
+				message: 'Hello'  
+			},  
+			computed: {      
+			 // 当 vm.message 发生改变时，依赖于 vm.reversedMessage 的绑定才会更新
+				reversedMessage: function () {
+					// this指向该实例
+					return this.message.split('').reverse().join('')    
+				}
+			}
+		})
+		// 笔记:计算属性和method中定义相同函数效果一样。不同的是计算属性是基于它的依赖缓存。计算属性只有在它的相关依赖发生改变时才会重新取值。
+	</script>
+</body>
+</html>

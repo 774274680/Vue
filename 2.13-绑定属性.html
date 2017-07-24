@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<div id="app">
+	    <!-- 将元素属性id与Vue实例data对象中id1绑定 -->
+		<p v-bind:id="id1">{{this.context}}</p>
+	</div>
+	<script type="text/javascript">
+		var vm=new Vue({  
+			el: '#app',  
+			data: {  
+				id1:"pid",
+				context:"xixi"
+			}
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<div id="app"></div>
+	<script type="text/javascript">
+		new Vue({  
+			el: '#app',  
+			data: {    a: 1  
+			}, 
+			created: function () {    // `this` 指向 vm 实例    
+				console.log('a is: ' + this.a)
+				alert("到时间了");  
+			}
+		})
+		//实例创建完成后会自动条用created属性中的函数
+	</script>
+</body>
+</html>

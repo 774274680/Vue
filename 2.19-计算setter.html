@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<div id="app"> 
+		<p>{{fullName}}</p>
+	</div>
+	<script type="text/javascript">
+		var vm=new Vue({  
+			el: '#app',
+			data: {    
+				firstName: 'Foo',   
+				lastName: 'Bar'
+			},
+			computed: {  
+				fullName: {     
+					// 这是获取操作
+					get: function () {
+						alert("获取实例对象的fullName属性时会被调用");
+						return this.firstName + ' ' + this.lastName
+					},    
+					// 这是设置操作 。在控制台运行 vm.fullName = 'John Doe' 时， setter 会被调用， vm.firstName 和vm.lastName 也会被对应更新
+					set: function (newValue) { 
+						alert("设置实例对象的fullName属性时会被调用");     
+						var names = newValue.split(' ')      
+						this.firstName = names[0]      
+						this.lastName = names[names.length - 1]    
+					}  
+				}
+			}
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	<script type="text/javascript" src="vue.js"></script>
+	<style type="text/css">
+		/*从进入到进入结束的过渡效果*/
+		/*all指所有可以过渡的css属性, .3s指过渡时间为0.3s, ease指动画类型以平滑过渡*/
+		.slide-fade-enter-active {  transition: all .3s ease;}
+		/*从离开到离开结束的过渡效果*/
+		/*cubic-bezier指的是以特定的贝塞尔曲线动画类型过渡*/
+		.slide-fade-leave-active {  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);}
+		/*进入和离开结束的效果*/
+		/*opacity指不透明度*/
+		.slide-fade-enter, .slide-fade-leave-active {  padding-left: 10px;  opacity: 0;}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<!-- 点击后show的值取反 -->
+		<button @click="show = !show">    Toggle render  </button>  
+		<!-- 过渡类名为slid-fade -->
+		<transition name="slide-fade">    
+			<p v-if="show">hello</p>  
+		</transition>
+	</div>
+	<script type="text/javascript">
+		var vm=new Vue({  
+			el: '#app',  
+			data: {    
+				show: true  
+			}
+		})
+	</script>
+</body>
+</html>

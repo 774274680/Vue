@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<h3>在默认情况下， v-model 在 input 事件中同步输入框的值与数据</h3> 
+		<input v-model="message">
+		<p>你在这上面的文本框输入内容,这里就可同步数据:{{message}}</p>
+		<hr>
+		<h3>当发生chang事件才会更新</h3>
+		<input v-model.lazy="msg" style="width:400px;" >
+		<p>msg的值为{{msg}}</p>
+		<h3>将用户的输入值转为 Number 类型（如果原值的转换结果为 NaN 则返回原值）。--<span style="color: red;">下面输入字母是不会给你添加的</spam></h3>
+		<input v-model.number="age" type="number">
+		<p>age的值为{{age}}</p>
+		<hr>
+		<h3>要自动过滤用户输入的首尾空格</h3>
+		<!-- 这里将实例中的filter_msg属性设置为null 这样placeholder就能显示了 -->
+		<input v-model.trim="filter_msg" placeholder="输入首尾含空格的,看我怎么处理--鼠标移开你就知道了" style="width: 400px;">
+
+	</div>
+	<script type="text/javascript">
+		var vm=new Vue({  
+			el: '#app',  
+			data: {  
+				message: 'Hello Vue.js',
+				msg:"试试添加内容或者删除内容,然后回车或者鼠标点击其他地方",
+				age:"45",
+				filter_msg:null
+			} 
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<div id="app"> 
+		<!-- 当数据改变时，插值处的内容不会更新 -->
+		<span v-once>This will never change: {{ msg }}</span><br>
+		<span v-if="seen" v-once>有其他数据的绑定是会影响的</span>
+	</div>
+	<script type="text/javascript">
+		var vm=new Vue({  
+			el: '#app',  
+			data: {  
+				msg: 'Hello world',  
+				seen:"true"
+			} 
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<div id="app">  
+		<!-- 要想使用实例中的属性应用在文本中则用{{}}包起来 -->
+		<p>{{num}}+1={{num+1}}</p>
+		<p>{{ ok ? 'YES':'NO' }}</p>
+		{{'message原来值为'+message+",颠倒后为"+message.split('').reverse().join('')}}
+		<!-- 被{{}}包起来的表达式会在所属 Vue 实例的数据作用域(提供数据的变量)下作为 JavaScript 被解析 -->
+		<!-- <div>{{a}}</div>  这里会报错，因为a在data对象没定义-->
+		<!-- 注意:绑定都只能包含单个表达式 -->
+	</div>
+	<script type="text/javascript">
+		var vm=new Vue({  
+			el: '#app',  
+			data: {
+				num:10,
+				ok:"hehe",  
+				message:"haha xixi"
+			}
+		})
+	</script>
+</body>
+</html>

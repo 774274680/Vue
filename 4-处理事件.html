@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<div id="app">  
+		<p>{{ message }}</p>
+		<!-- 给元素绑定click事件,调用methods属性中对应的方法 -->
+		<button v-on:click="reverseMessage">Reverse Message</button>
+	 </div> 
+	<script type="text/javascript">
+		new Vue({  
+			el: '#app',  
+			data: {   
+				message: 'Hello Vue.js!'  
+			},   
+			// 实例Vue对象的属性方法
+			methods: {   
+				reverseMessage: function () {   
+					//更改对象中message属性的值等于原来值取反。Vue是动态响应的，所以绑定的元素会跟着变
+					this.message = this.message.split('').reverse().join('')
+				}
+			}
+		})
+	</script>
+</body>
+</html>

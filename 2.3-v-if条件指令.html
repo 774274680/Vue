@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<div id="app-3">
+		<!-- 使用v-if来将seen值与Vue实例的seen属性绑定。当seen的值为true则该标签显示;当seen值为fasle则该标签不见了(不存在)-->
+		<p v-if="seen">Now you see me</p>
+	</div>
+	<script type="text/javascript">
+		var app=new Vue({  
+			el: '#app-3',  
+			data: {  
+				seen:true  
+			} 
+		})
+	</script>
+</body>
+</html>

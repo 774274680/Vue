@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<div id="app"> 
+		<p>{{fullName}}</p>
+	</div>
+	<script type="text/javascript">
+		// var vm=new Vue({  
+		// 	el: '#app',  
+		// 	data: {    
+		// 		firstName: 'Foo',    
+		// 		lastName: 'Bar',    
+		// 		fullName: 'Foo Bar'  
+		// 	},  
+		// 	watch: {    
+		// 		firstName: function (val) {      
+		// 			this.fullName = val + ' ' + this.lastName
+		// 			alert("你在控制台上更改了数据会调用我的")   
+		// 		},    
+		// 		lastName: function (val) {      
+		// 			this.fullName = this.firstName + ' ' + val
+		// 			alert("$watch这个方法会实时关心你是否更改了数据的");   
+		// 		}
+		// 	}
+		// })
+		// 上面为$watch的使用  重复冗余
+
+		var vm = new Vue({  
+			el: '#app',  
+			data: {    
+				firstName: 'Foo',    
+				lastName: 'Bar'
+				// fullName:"xixi"  
+			},  
+			computed: {    
+				fullName: function () {
+					alert("data属性如果没有fullName才会来找我的。并且属性名不能同时存在");
+					return this.firstName + ' ' + this.lastName
+				}  
+			}
+		})
+// 上面为计算属性  简洁
+	</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<!-- view部分 -->
+	<div id="app"> {{ message }} </div>
+
+
+	<script type="text/javascript">
+	    // Model部分
+	    var Data={name:"Vue.js"}
+
+	    // 连接View与Model部分
+		new Vue({  
+			//注意这里绑定id要加#。对象中属性之间用逗号隔开
+			el: '#app',  
+			data: {  
+				message: 'Hello world'  
+			} 
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<div id="app"> 
+		<!-- items代表data中items的值-数组  item-数组中的元素即对象,index代表下标-->
+		<!-- 也可以用 of 替代 in 作为分隔符 -->
+		<li v-for="item in items">{{ item.message }}</li>
+		<hr>
+		<li v-for="item of items">{{ item.message }}</li>
+		<hr>
+		<li v-for="(item, index) in items">    {{ parentMessage }} - {{ index }} - {{ item.message }}  </li>
+		<hr>
+		<!-- 用v-for 的 <template> 标签来渲染多个元素块 -->
+		<ul>  
+			<template v-for="item in item2">    
+				<li>{{ item.msg }}</li>    
+				<li class="divider"></li>  
+			</template>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		var vm=new Vue({  
+			el: '#app',  
+			data: {    
+				items: [      
+					{message: 'foo' },      
+					{message: 'Bar' }    
+				],
+				parentMessage: 'Parent',
+				item2:[
+					{msg:"信息1"},
+					{msg:"信息2"}
+				]
+			}
+		})
+	</script>
+</body>
+</html>

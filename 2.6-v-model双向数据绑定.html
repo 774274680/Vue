@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<div id="app-6">  
+		<p>{{ message }}</p>
+		<!-- 当对表单元素使用v-model指令更改其内容后,与其绑定的Vue属性message也会跟着联动-->
+		<input v-model="message">
+	</div>
+	<script type="text/javascript">
+		var app6 = new Vue({  
+			el: '#app-6',  
+			data: {    
+				message: 'Hello Vue!'  
+			}
+		})
+	</script>
+</body>
+</html>

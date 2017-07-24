@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<div id="app"> 
+		<!-- 内容会以HTML输出 -->
+		<p v-html="rawHtml">{{rawHtml}}</p>
+		
+		<!-- 会将rawHtml属性值以文本形式输出 -->
+		<p>{{rawHtml}}</p> 
+	</div>
+	<script type="text/javascript">
+		var vm=new Vue({  
+			el: '#app',  
+			data: {  
+				rawHtml: '<div>你好,很高兴认识Vue</div>'  
+			} 
+		})
+	</script>
+</body>
+</html>

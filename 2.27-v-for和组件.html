@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- placeholder属性指没输入前的提示文本;keyup.enter指当在该标签按下回车后调用该事件 -->
+		<input    
+			v-model="newTodoText"    
+			v-on:keyup.enter="addNewTodo"   
+			placeholder="Add a todo"  
+		>  
+		<ul> 
+			<!-- is属性代表该标签等价于组件名todo-item;title换成自定义组件中的自定义属性    -->
+			<li 
+				is="todo-item" 
+				v-for="(todo, index) in todos"      
+				v-bind:title="todo"      
+				v-on:remove="todos.splice(index, 1)"    
+			></li>  
+		</ul>
+		<hr>
+		<p>为了给 Vue 一个提示，以便它能跟踪每个节点的身份，从而重用和重新排序现有元素，你需要为每项提供一个唯一 key 属性。理想的 key 值是每项都有唯一 id。</p>
+		<ol>
+			<li v-for="city in  cities" v-bind:key="city.id">key为{{city.id}}的值是{{city}}</li>
+		</ol>
+		<hr>
+		<p style="color: red;font-weight: bold;">
+		由于 JavaScript 的限制， Vue 不能检测以下变动的数组：
+		当你直接设置一个项的索引时，例如： vm.items[indexOfItem] = newValue 
+		当你修改数组的长度时，例如： vm.items.length = newLength
+		vue.js的列表渲染中有解决办法
+		</p>
+		<hr>
+		<h3>显示过滤/排序结果</h3>
+		<li v-for="n in evenNumbers">{{ n }}</li>
+	</div>
+	<script type="text/javascript">
+		// $emit为Vue实例继承下来的方法
+		Vue.component('todo-item',{  
+			template:
+			'<li>{{ title }}<button v-on:click="$emit(\'remove\')">X</button></li>',  
+			props: ['title']
+		});
+		var vm=new Vue({  
+			el: '#app',  
+			data: {    
+				newTodoText: '',    
+				todos: [      
+					'Do the dishes',      
+					'Take out the trash',      
+					'Mow the lawn'    
+				],
+				cities:[
+					'上海',
+					'广州',
+					'北京'
+				],
+				numbers: [ 1, 2, 3, 4, 5 ]
+			},  
+			methods: {    
+				addNewTodo: function () {
+					// 往data数据中的todos数组添加数据,然后文本框置空
+					this.todos.push(this.newTodoText)      
+					this.newTodoText = ''    
+				}  
+			},
+			computed: {  
+				//当然该方法也能写在methods属性中。我想这个因为是计算值所以放在computed属性中
+				evenNumbers: function () {   
+					 //筛选出数组中能被2整除的数出来 
+					return this.numbers.filter(function (number){
+						// alert(number)  num会循环numbers的数组长度次
+						return number % 2 === 0    
+					})  
+				}
+			}
+		})
+	</script>
+</body>
+</html>

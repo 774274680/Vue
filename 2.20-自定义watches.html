@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<p>当你想要在数据变化响应时，执行异步操作或昂贵操作时,Vue 提供一个更通用的方法通过 watch 选项，来响应数据的变化。使用 watch 选项允许我们执行异步操作（访问一个 API），限制我们执行该操作的频率，并直到我们得到最终结果时，才设置中间状态。这是计算属性无法做到的。</p>
+
+	<div id="app">  
+		<p>Ask a yes/no question:
+			<input v-model="question">  
+		</p>  
+		<p>{{ answer }}</p>
+	</div>
+	<script type="text/javascript">
+	var vm= new Vue({  
+			el: '#app', 
+			data: {    
+				question: '',    
+				answer: 'I cannot give you an answer until you ask a question!'  
+			},  
+			watch: {
+				// 如果 question 发生改变，这个函数就会运行
+				question: function (newQuestion) {
+					// alert("测试调用");
+					this.answer = 'Waiting for you to stop typing...'      
+					this.answer=this.getAnswer()
+				}  
+			},  
+			methods: {
+				getAnswer: function(){
+					return "给你一个数吧"+Math.random()*100;
+				}
+			}
+		})
+	</script>
+</body>
+</html>

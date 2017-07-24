@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<!-- <transition v-on="which= !which "> -->
+		<button  v-on:click="which = !which">阿牛</button>
+		<transition name="slide-fade">    
+			<p v-if="which">hello</p>  
+		</transition>
+		
+		
+	</div>
+	<script type="text/javascript">
+		var vm=new Vue({  
+			el: '#app',
+			data:{
+				which:true
+			}
+		})
+	</script>
+</body>
+</html>

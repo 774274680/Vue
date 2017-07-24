@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<div id="app"> 
+	<!-- 当data对象属性中ok没有值的话,该值相当于为null,所以显示No。注意这两者是对立的，就好比条件循环中的要不你成立,要不他成立-->
+		<h1 v-if="ok">Yes</h1>
+		<h1 v-else>No</h1>
+		<p>上面只能控制一组</p>
+		<hr>
+		<p>下面能控制多个</p>
+		<!-- 把一个 <template> 元素当做包装元素,最终的渲染结果不会包含该元素 -->
+		<template v-if="ok">  
+			<h1>Title</h1>  
+			<p>Paragraph 1</p>  
+			<p>Paragraph 2</p>
+		</template>
+
+		<div v-if="Math.random() > 0.5">随机值大于0.5,则显示我</div>
+		<div v-else>随机值小于0.5,则显示我</div>
+	
+		<!--根据条件展示元素的选项是 v-show 指令与v-if一样。不同的是有 v-show 的元素会始终渲染并保持在 DOM 中。v-show 是简单的切换元素的 CSS 属性 display  -->
+		<h1 v-show="show">Hello!</h1>
+
+	</div>
+	<script type="text/javascript">
+		var vm=new Vue({  
+			el: '#app',  
+			data: {  
+				ok:true,
+				show:true
+			} 
+		})
+	</script>
+</body>
+</html>

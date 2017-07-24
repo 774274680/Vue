@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<div id="app">  
+		 <!--在input中按下回车后(v-on:keyup.enter)创建一个新元素到数组中。v-mode则将输入的该文本内容与该对象的newTodo属性绑定了-->
+		<input v-model="newTodo" v-on:keyup.enter="addTodo">  
+		<ul>   
+		    <!-- todo指todos数组中的元素,index指索引值-->
+			<li v-for="(todo,index) in todos">
+				<span>{{ todo.text }}</span>   
+				<button v-on:click="removeTodo(index)">X</button>  
+			</li>  
+		</ul> 
+	</div>
+	<script type="text/javascript">
+		new Vue({  
+			el: '#app',  
+			data: {  
+				newTodo: '',  
+				todos: [   { text: 'Add some todos' }  ]  
+			},   
+			methods: {   
+				addTodo: function () {  
+							// trim方法是去掉字符串的左右空格
+							alert(this.newTodo);
+							var text = this.newTodo.trim()  
+							if (text) {
+								this.todos.push({ text: text })  
+								this.newTodo = ''  }  
+				},  
+				removeTodo:function (index) { 
+							// alert(index); 
+							this.todos.splice(index, 1)  
+				}  
+			} 
+		})
+
+	</script>
+</body>
+</html>

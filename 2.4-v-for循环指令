@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<div id="app-4">  
+		<ol>    
+			<!-- for-in遍历数组或对象。todos是个数组,todo是数组中每个元素即对象,todo.text输出文本-->
+			<li v-for="todo in todos">{{ todo.text }}</li> 
+		</ol>
+	</div>
+
+	<script type="text/javascript">
+		var app4 = new Vue({  
+			el: '#app-4',  
+			data: {    
+				todos: [ 
+					{ text: 'Learn JavaScript' },      
+					{ text: 'Learn Vue' },      
+					{ text: 'Build something awesome' }    
+				]  
+			}
+		})
+		// 往数组添加内容 app4.todos.push({ text: 'New item' })。
+	</script>
+</body>
+</html>

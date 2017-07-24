@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<!-- 仅在父模板id为app下可用 -->
+	<div id="app"> 
+		<my-component><my-component>
+		<!-- 父模板会将上面渲染为<div>A custom component!</div>-->
+	</div>
+	<script type="text/javascript">
+		// 要在创建对象实例之前注册组件
+		var Child = {  template: '<div>A custom component!</div>'}
+		var vm=new Vue({  
+			el: '#app',  
+			components: {    //<my-component>将只在父模板可用    
+				'my-component': Child  
+			}
+		})
+		
+	</script>
+</body>
+</html>

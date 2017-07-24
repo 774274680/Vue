@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<table id="app">  
+		<tr is="my-row"></tr>
+	</table>
+
+	<script type="text/javascript">
+		var Child = {  
+			template: '<div>A custom component!</div>'
+		}
+		var vm=new Vue({  
+			el: '#app',  
+			components: {     
+				'my-row': Child  
+			}
+		})
+	</script>
+</body>
+</html>
