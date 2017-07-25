@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		<h3>添加信息</h3>
+		姓名:<input v-model="name"><br>
+		<!-- type属性为name则限制输入的要是数字 .number代表将用户的输入值转为 Number 类型 -->
+		年龄:<input v-model.number="age" type="number"><br>
+		性别:<select v-model="selected_sex"><option v-for="element in sex" v-bind:value="element">{{element}}</option></select>
+		<button v-on:click="createnew">创建</button>
+		<table style="border: 1px solid black;">
+			<tr>
+				<th>姓名</th>
+				<th>年龄</th>
+				<th>性别</th>
+			</tr>
+			<tr v-for="item in addmessage">
+				<td>{{item.add_name}}</td>
+				<td>{{item.add_age}}</td>
+				<td>{{item.add_sex}}</td>
+			</tr>
+		</table>
+	</div>
+	<script type="text/javascript">
+	 	var vm=new Vue({
+	 		el:"#app",
+	 		data:{
+	 			name:"",
+	 			age:0,
+	 			sex:["男","女"],
+	 			selected_sex:"女",
+	 			addmessage:[
+	 				{"add_name":"hehe","add_age":10,"add_sex":"男"}
+	 			]
+	 		},
+	 		methods:{
+	 			createnew:function(){
+	 				if(this.name && this.age){
+	 					var obj={}
+	 					obj.add_name=this.name
+	 					obj.add_age=this.age 
+	 					obj.add_sex=this.selected_sex
+	 					// document.wtrite(obj)
+	 					this.addmessage.push(obj)
+	 					this.name=""
+	 					this.age=0
+	 				}
+	 			}
+	 		}
+	 	})
+	</script>
+</body>
+</html>
